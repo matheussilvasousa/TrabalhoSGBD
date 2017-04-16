@@ -5,7 +5,7 @@ public class Fifo{
 	private static int i = 0;
 	protected int pageFaults;
 	protected int numFrames;
-	LinkedList frames;
+	LinkedList<String> frames;
 	
 	public Fifo(int numFrames){
 		if(numFrames < 0){
@@ -13,7 +13,7 @@ public class Fifo{
 		}
 		this.numFrames = numFrames;
 		pageFaults = 0;
-		this.frames = new LinkedList();
+		this.frames = new LinkedList<String>();
 	}
 	
 	public void insert(String pageNumber){
@@ -23,13 +23,13 @@ public class Fifo{
 				frames.add(pageNumber);
 			} else{
 				System.out.println("Memória cheia! Removendo mais antigo...");
-				frames.remove(i);
+				frames.removeFirst();
 				System.out.println("Memória disponível! Adicionando " + pageNumber + "...");
-				frames.add(i, pageNumber);
-				i++;
+				frames.add(pageNumber);
+				/*i++;
 				if(i == numFrames){
 					i = 0;
-				}
+				}*/
 			}
 			printFrames();
 			pageFaults++;

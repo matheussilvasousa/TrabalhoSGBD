@@ -18,13 +18,14 @@ public class LFU{
 	}
 		
 	public void insert(String pageNumber){
-		int tmp = -1;
-		Page page = new Page(pageNumber);
+		/*int tmp = -1;
 		for(int i = 0; i < frames.size(); i++){
 			if(pageNumber.equals(frames.get(i).getPage())){
 				tmp = i;
 			}
-		}
+		}*/
+		Page page = new Page(pageNumber);
+		int tmp = frames.indexOf(page.getPage());
 		if(tmp == -1){
 			if(frames.size() < numFrames){
 				System.out.println("Memória disponível! Adicionando " + pageNumber + "...");
@@ -39,7 +40,7 @@ public class LFU{
 						p = frames.get(i);
 					}
 				}
-				System.out.println("Page = " + p.getPage() + ", id = " + p.getId() + ", pos = " + p.getPos());
+				//System.out.println("Page = " + p.getPage() + ", id = " + p.getId() + ", pos = " + p.getPos());
 				System.out.println("Memória cheia! Removendo a menos referenciada...");
 				id = p.getId();
 				frames.remove(p.getPos());

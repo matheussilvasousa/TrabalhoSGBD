@@ -33,6 +33,7 @@ public class LRU{
 			frames.remove(tmp);
 			frames.add(pageNumber);
 		}
+		printFrames();
 	}
 	
 	public int getPageFaultCount(){
