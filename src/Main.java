@@ -7,18 +7,6 @@ public class Main {
 		Scanner scan1 = new Scanner(System.in);
 		String page = scan1.nextLine();
 		
-		System.out.println("Digite a quantidade de frames de memória disponíveis: ");
-		Scanner scan2 = new Scanner(System.in);
-		int quant = scan2.nextInt();
-		String[] stringPages = page.split(",");
-		
-		System.out.println("Escolha a função desejada:");
-		System.out.println("1 - Fetch");
-		System.out.println("2 - Evict");
-		System.out.println("3 - Display Cache");
-		System.out.println("4 - Display Stats");
-		Scanner scan3 = new Scanner(System.in);
-		
 		System.out.println("Escolha o algoritmo a ser usado:");
 		System.out.println("1 - FIFO");
 		System.out.println("2 - LRU");
@@ -26,13 +14,13 @@ public class Main {
 		System.out.println("4 - MFU");
 		System.out.println("5 - Ótimo");
 		System.out.println("6 - Random Replacement");
-		Scanner scan4 = new Scanner(System.in);
+		Scanner scan2 = new Scanner(System.in);
 		
-		int opt = scan4.nextInt();
+		int opt = scan2.nextInt();
 		switch(opt){
 		case 1:
-			Fifo fifo = new Fifo(quant);
-			for(int i = 0; i < (stringPages.length); i++){
+			Fifo fifo = new Fifo();
+			/*for(int i = 0; i < (stringPages.length); i++){
 				fifo.insert(stringPages[i]);
 			}
 			System.out.println("Page Faults: " + fifo.getPageFaultCount());
@@ -71,7 +59,7 @@ public class Main {
 				random.insert(stringPages[i]);
 			}
 			System.out.println("Page Faults: " + random.getPageFaultCount());
-			break;
+			break;*/
 		}
 	}
 
