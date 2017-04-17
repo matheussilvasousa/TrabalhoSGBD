@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Buffer {
+abstract class Buffer {
 	
 	HashMap<Integer,String> cache;
 	
@@ -13,12 +13,12 @@ public class Buffer {
 		if(cache.containsKey(chave)){
 			valor = cache.get(chave);
 		} else{
-			//Aqui é onde ele faz a busca no arquivo
+			//Aqui ï¿½ onde ele faz a busca no arquivo
 		}
 		return valor;
 	}
 	
-	public void evict(){
+	abstract void evict(){
 		
 	}
 	
@@ -28,8 +28,10 @@ public class Buffer {
 		}
 	}
 	
-	public void displayStats(){
-		
+	abstract void displayStats(){
+            System.out.printf("Cache Miss: %s\n"+this.miss);
+            System.out.printf("Cache Hit: %s\n"+this.hit);
 	}
 	
+        
 }
