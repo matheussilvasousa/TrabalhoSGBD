@@ -1,83 +1,54 @@
-import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Fifo implements Buffer{
 	
-	//protected int pageFaults;
-	protected int numFrames;
-	HashMap<Integer,String> cache;
+    protected int numFrames;
+    LinkedList<Page> cache;
     protected int miss;
     protected int hit;
-    protected boolean empty;
+    protected int pos; 
 	
-	public Fifo(){
-        this.empty = true;
-		this.numFrames = 8;
-		//pageFaults = 0;
-		this.cache = new HashMap<Integer,String>();
+        public Fifo(){
+            this.numFrames = 8;
+            this.cache = new LinkedList<Page>();
 	}
 	
-	public String fetch(int key){
-		String value = null;
-  		if(cache.containsKey(key)){
-  			value = cache.get(key);
-  			this.hit++;
-  		} else if(!cache.containsKey(key) && cache.size() < numFrames){
-  			//verificar a aplicação desse método
-  			value = catchValue(key);
-  			this.miss++;
+        @Override
+	public void fetch(int key){
+                Page p = new Page();
+                p.setKey(key);
+                if(cache.isEmpty()){
+                    cache.add(File.deserializeFile(key));
+                    this.miss++;
+                } else if(cache.contains(p)){
+                    this.hit++;
+  		} else if(!cache.contains(p) && cache.size() < numFrames){
+                    cache.add(File.deserializeFile(key));
+                    this.miss++;
   		} else{
-  			key = evict();
-  			value = catchValue(key);
-  			this.miss++;
+                    pos = evict();
+                    cache.add(pos, File.deserializeFile(key));
+                    this.miss++;
   		}
-  		return value;
   	}		
-	
-	public String catchValue(int key){
-		cache.put(key, File.deserializeFile(key));
-		return cache.get(key);
-	}
     
+    @Override
     public int evict(){
-		return 0;
+            cache.removeFirst();
+            return 0;
     }
-        
-	/*public void insert(String pageNumber){
-		if(!frames.contains(pageNumber)){
-			if(frames.size() < numFrames){
-				System.out.println("Memï¿½ria disponï¿½vel! Adicionando " + pageNumber + "...");
-				frames.add(pageNumber);
-			} else{
-				System.out.println("Memï¿½ria cheia! Removendo mais antigo...");
-				frames.removeFirst();
-				System.out.println("Memï¿½ria disponï¿½vel! Adicionando " + pageNumber + "...");
-				frames.add(pageNumber);
-				/*i++;
-				if(i == numFrames){
-					i = 0;
-				}
-			}
-			printFrames();
-			pageFaults++;
-			System.out.println("Page Faults: " + pageFaults);
-		}
-	}*/
     
+    @Override
     public void displayCache(){
-		for(int value : cache.keySet()){
-			System.out.println("Chave: " + value + ", valor: " + cache.get(value));
+		for(Page p : cache){
+			System.out.println("Chave: " + p.getKey() + ", valor: " + p.getValue());
 		}
 	}
 
-  	public void displayStats(){
-  		System.out.printf("Cache Miss: %s\n"+this.miss);
-		System.out.printf("Cache Hit: %s\n"+this.hit);
-  	}
-  			  			
-  	public void printFrames(){
-  		for(int i = 0; i < cache.size(); i++){
-  			System.out.println(cache.get(i));
-  		}
-  	}
+    @Override
+    public void displayStats(){
+            System.out.printf("Cache Miss: " + this.miss + "\n");
+            System.out.printf("Cache Hit: " + this.hit + "\n");
+    }
  
 }

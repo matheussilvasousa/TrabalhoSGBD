@@ -5,7 +5,8 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Digite as paginas selecionadas, separando-as por ',': ");
 		Scanner scan1 = new Scanner(System.in);
-		String page = scan1.nextLine();
+		String file = scan1.nextLine();
+                String[] page = file.split(",");
 
 		System.out.println("Escolha o algoritmo a ser usado:");
 		System.out.println("1 - FIFO");
@@ -20,22 +21,23 @@ public class Main {
 		switch(opt){
 		case 1:
 			Fifo fifo = new Fifo();
-			/*for(int i = 0; i < (stringPages.length); i++){
-=======
-			for(int i = 0; i < (stringPages.length); i++){
->>>>>>> 30b9a810ed855b5f5d06cb359da119bc72cfb8c5
-				fifo.insert(stringPages[i]);
-			}
-			System.out.println("Page Faults: " + fifo.getPageFaultCount());
-			break;
+                        fifo.displayStats();
+                        for(int i = 0; i < page.length; i++){
+                            fifo.fetch(Integer.parseInt(page[i]));
+                        }
+                        fifo.displayStats();
+                        fifo.displayCache();
+                        break;
 		case 2:
 			LRU lru = new LRU();
-			for(int i = 0; i < (stringPages.length); i++){
-				lru.insert(stringPages[i]);
-			}
-			System.out.println("Page Faults: " + lru.getPageFaultCount());
-			break;
-		case 3:
+			lru.displayStats();
+                        for(int i = 0; i < page.length; i++){
+                            lru.fetch(Integer.parseInt(page[i]));
+                        }
+                        lru.displayStats();
+                        lru.displayCache();
+                        break;
+		/*case 3:
 			LFU lfu = new LFU();
 			for(int i = 0; i < (stringPages.length); i++){
 				lfu.insert(stringPages[i]);
@@ -55,14 +57,16 @@ public class Main {
 				otimo.insert(stringPages);
 			}
 			System.out.println("Page Faults: " + otimo.getPageFaultCount());
-			break;
+			break;*/
 		case 6:
 			RandomReplacement random = new RandomReplacement();
-			for(int i = 0; i < (stringPages.length); i++){
-				random.insert(stringPages[i]);
-			}
-			System.out.println("Page Faults: " + random.getPageFaultCount());
-			break;*/
+                        random.displayStats();
+                        for(int i = 0; i < page.length; i++){
+                            random.fetch(Integer.parseInt(page[i]));
+                        }
+                        random.displayStats();
+                        random.displayCache();
+			
 		}
 	}
 

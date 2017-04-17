@@ -1,36 +1,30 @@
 
 public class Page {
 
-	protected int id;
-	protected int pos;
-	protected String page;
+	protected int key;
+	protected String value;
 	
-	public Page(String page){
-		this.page = page;
+        public Page(){}
+        
+	public Page(int key, String value){
+            this.key = key;
+            this.value = value;
 	}
 
-	public int getId() {
-		return id;
+	public int getKey() {
+            return key;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getPos(){
-		return pos;
+	public void setKey(int key) {
+            this.key = key;
 	}
 	
-	public void setPos(int pos){
-		this.pos = pos;
+	public String getValue(){
+            return value;
 	}
-
-	public String getPage() {
-		return page;
-	}
-
-	public void setPage(String page) {
-		this.page = page;
+	
+	public void setValue(String value111){
+            this.value = value;
 	}
 
 }

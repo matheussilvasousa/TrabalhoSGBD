@@ -1,6 +1,6 @@
 public interface Buffer {
 	
-	String fetch(int key);	
+	void fetch(int key);	
 		
 	int evict();
 
