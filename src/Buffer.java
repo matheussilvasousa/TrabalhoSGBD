@@ -1,7 +1,7 @@
 import java.util.HashMap;
-  		  
+
 abstract class Buffer {
-  			  	
+	
 	HashMap<Integer,String> cache;
   			  	
 	public String fetch(int chave){
@@ -17,9 +17,11 @@ abstract class Buffer {
 	abstract void evict();
 
 	public void displayCache(){
-
+		for(int valor : cache.keySet()){
+			System.out.println("Chave: " + valor + ", valor: " + cache.get(valor));
+		}
 	}
 	 
 	abstract void displayStats();
-
+	       
 }
