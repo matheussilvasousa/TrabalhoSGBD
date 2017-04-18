@@ -1,6 +1,7 @@
+
 import java.util.LinkedList;
 
-public class LRU implements Buffer{
+public class MRU implements Buffer{
 		
 	protected int numFrames;
         LinkedList<Page> cache;
@@ -11,7 +12,7 @@ public class LRU implements Buffer{
         protected int cont;
         
 		
-	public LRU(){
+	public MRU(){
 		this.numFrames = 8;
                 this.cache = new LinkedList<Page>();
                 index = new LinkedList<Integer>();
@@ -63,16 +64,12 @@ public class LRU implements Buffer{
         return bool;
     }
     
-    
-    
     @Override
     public int evict() {
-        pos = index.getFirst();
+        pos = index.getLast();
         index.removeFirst();
         index.addLast(pos);
-
         return pos;
-        
     }
 
     @Override
