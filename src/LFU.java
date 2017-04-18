@@ -17,13 +17,13 @@ public class LFU{
 		frames = new LinkedList<Page>();
 	}
 		
-	public void insert(String pageNumber){
+	/*public void insert(String pageNumber){
 		/*int tmp = -1;
 		for(int i = 0; i < frames.size(); i++){
 			if(pageNumber.equals(frames.get(i).getPage())){
 				tmp = i;
 			}
-		}*/
+		}
 		Page page = new Page(pageNumber);
 		int tmp = frames.indexOf(page.getPage());
 		if(tmp == -1){
@@ -71,6 +71,6 @@ public class LFU{
 		for(int i = 0; i < frames.size(); i++){
 			System.out.println("Page = " + frames.get(i).getPage() + ", id = " + frames.get(i).getId());
 		}
-	}
+	}*/
 		
 }

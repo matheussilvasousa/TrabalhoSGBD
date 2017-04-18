@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class LRU implements Buffer{
+public class MRU implements Buffer{
 		
 	protected int numFrames;
     LinkedList<Page> cache;
@@ -11,7 +11,7 @@ public class LRU implements Buffer{
     protected int cont;
         
 		
-	public LRU(){
+	public MRU(){
 		this.numFrames = 8;
         this.cache = new LinkedList<Page>();
         this.index = new LinkedList<Integer>();
@@ -28,12 +28,12 @@ public class LRU implements Buffer{
                 }
             }
             index.remove(cont);
-            index.addFirst(pos);
+            index.add(pos);
 		} else if(!contains(cache, key) && cache.size() < numFrames){
 		    cache.add(File.deserializeFile(key));
 		    this.miss++;
             pos = findPosition(cache, key);
-            index.addFirst(pos);
+            index.add(pos);
 		} else {
 		    pos = evict();
 		    cache.set(pos,File.deserializeFile(key));
@@ -62,10 +62,11 @@ public class LRU implements Buffer{
     
     @Override
     public int evict() {
-        pos = index.getLast();
-        index.removeLast();
-        index.addFirst(pos);
+        pos = index.getFirst();
+        index.removeFirst();
+        index.add(pos);
         return pos-1;
+        
     }
 
     @Override

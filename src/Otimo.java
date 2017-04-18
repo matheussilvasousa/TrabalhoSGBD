@@ -18,7 +18,7 @@ public class Otimo{
 		frames = new LinkedList<Page>();
 	}
 		
-	public void insert(String[] stringPages){
+	/*public void insert(String[] stringPages){
 		for(int i = 0; i < stringPages.length; i++){
 			Page page = new Page(stringPages[i]);
 			if(frames.size() < numFrames){
@@ -68,6 +68,6 @@ public class Otimo{
 		for(int i = 0; i < frames.size(); i++){
 			System.out.println("Page = " + frames.get(i).getPage() + ", id = " + frames.get(i).getId());
 		}
-	}
+	}*/
 		
 }

@@ -4,7 +4,7 @@ public class Page {
 	protected int key;
 	protected String value;
 	
-        public Page(){}
+    public Page(){}
         
 	public Page(int key, String value){
             this.key = key;
@@ -23,7 +23,7 @@ public class Page {
             return value;
 	}
 	
-	public void setValue(String value111){
+	public void setValue(String value){
             this.value = value;
 	}
 

@@ -17,7 +17,7 @@ public class MFU{
 		frames = new LinkedList<Page>();
 	}
 		
-	public void insert(String pageNumber){
+	/*public void insert(String pageNumber){
 		int tmp = -1;
 		Page page = new Page(pageNumber);
 		for(int i = 0; i < frames.size(); i++){
@@ -70,6 +70,6 @@ public class MFU{
 		for(int i = 0; i < frames.size(); i++){
 			System.out.println("Page = " + frames.get(i).getPage() + ", id = " + frames.get(i).getId());
 		}
-	}
+	}*/
 		
 }

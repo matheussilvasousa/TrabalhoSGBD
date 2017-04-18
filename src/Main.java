@@ -21,22 +21,20 @@ public class Main {
 		switch(opt){
 		case 1:
 			Fifo fifo = new Fifo();
-                        fifo.displayStats();
-                        for(int i = 0; i < page.length; i++){
-                            fifo.fetch(Integer.parseInt(page[i]));
-                        }
-                        fifo.displayStats();
-                        fifo.displayCache();
-                        break;
+            for(int i = 0; i < page.length; i++){
+                fifo.fetch(Integer.parseInt(page[i]));
+            }
+            fifo.displayStats();
+            fifo.displayCache();
+            break;
 		case 2:
 			LRU lru = new LRU();
-			lru.displayStats();
-                        for(int i = 0; i < page.length; i++){
-                            lru.fetch(Integer.parseInt(page[i]));
-                        }
-                        lru.displayStats();
-                        lru.displayCache();
-                        break;
+            for(int i = 0; i < page.length; i++){
+                lru.fetch(Integer.parseInt(page[i]));
+            }
+            lru.displayStats();
+            lru.displayCache();
+            break;
 		/*case 3:
 			LFU lfu = new LFU();
 			for(int i = 0; i < (stringPages.length); i++){
@@ -60,14 +58,15 @@ public class Main {
 			break;*/
 		case 6:
 			RandomReplacement random = new RandomReplacement();
-                        random.displayStats();
-                        for(int i = 0; i < page.length; i++){
-                            random.fetch(Integer.parseInt(page[i]));
-                        }
-                        random.displayStats();
-                        random.displayCache();
+            for(int i = 0; i < page.length; i++){
+                random.fetch(Integer.parseInt(page[i]));
+            }
+            random.displayStats();
+            random.displayCache();
 			
 		}
+		scan2.close();
+		scan1.close();
 	}
 
 }
