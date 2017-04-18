@@ -28,12 +28,12 @@ public class LRU implements Buffer{
                 }
             }
             index.remove(cont);
-            index.addFirst(pos);
+            index.add(pos);
 		} else if(!contains(cache, key) && cache.size() < numFrames){
 		    cache.add(File.deserializeFile(key));
 		    this.miss++;
             pos = findPosition(cache, key);
-            index.addFirst(pos);
+            index.add(pos);
 		} else {
 		    pos = evict();
 		    cache.set(pos,File.deserializeFile(key));
@@ -53,7 +53,7 @@ public class LRU implements Buffer{
     public boolean contains(LinkedList<Page> cache, int key){
         boolean bool=false;
         for(Page p: cache){
-            if(p.getKey()==key){
+            if(p.getKey()==(key)){
                bool = true;
             }
         }
@@ -62,16 +62,19 @@ public class LRU implements Buffer{
     
     @Override
     public int evict() {
-        pos = index.getLast();
-        index.removeLast();
-        index.addFirst(pos);
-        return pos-1;
+        pos = index.getFirst();
+        index.removeFirst();
+        index.addLast(pos);
+        return pos-1; 
     }
 
     @Override
     public void displayCache(){
 		for(Page p : cache){
 			System.out.println("Chave: " + p.getKey() + ", valor: " + p.getValue());
+		}
+		for(int i = 0; i < index.size(); i++){
+			System.out.println("Index[" + i + "]: " + index.get(i));
 		}
 	}
 
