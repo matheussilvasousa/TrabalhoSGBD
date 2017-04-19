@@ -5,9 +5,9 @@ import java.io.IOException;
 public class File {
 
 	public static Page deserializeFile(int key){
-            String line = null;
-            Page p = null;
-            try {
+		String line = null;
+        Page p = null;
+        try {
 	      FileReader file = new FileReader("arquivo.txt");
 	      BufferedReader readFile = new BufferedReader(file);
 	      line = readFile.readLine();
@@ -16,15 +16,13 @@ public class File {
 	        line = readFile.readLine();
 	        i++;
 	      }
-              p = new Page(i, line);
+          p = new Page(i, line);
 	      readFile.close();
 	      file.close();
 	    } catch (IOException e) {
-	        System.err.printf("Erro na abertura do arquivo: %s.\n",
-	          e.getMessage());
-              }
+	        System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
+        }
 		return p;
-
 	}
 	
 }

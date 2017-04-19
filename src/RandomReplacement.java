@@ -24,7 +24,7 @@ public class RandomReplacement implements Buffer {
 		    this.miss++;
 		} else {
 		    pos = evict();
-		    cache.set(pos, File.deserializeFile(key));
+		    cache.add(pos, File.deserializeFile(key));
 		    this.miss++;
                 }
         }

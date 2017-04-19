@@ -62,11 +62,8 @@ public class MRU implements Buffer{
     
     @Override
     public int evict() {
-    	/*pos = index.getFirst();
-        index.removeFirst();
-        index.addLast(pos);
-        return pos-1;*/
-    	return 0;
+    	pos = index.getLast();
+        return pos-1;
     }
 
     @Override
